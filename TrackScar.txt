@@ -1,0 +1,47 @@
+// Three color WGA stuff.
+
+macro "View 1001... [6]" {
+     Stack.setActiveChannels("1001");
+  }
+
+macro "View 1101... [7]" {
+     Stack.setActiveChannels("1101");
+  }
+
+macro "View 1111... [8]" {
+     Stack.setActiveChannels("1111");
+  }
+
+macro "View 11111... [9]" {
+     Stack.setActiveChannels("11111");
+  }
+
+var cellNum = 1;
+var max, min;
+
+macro "Open and adjust contrast... [0]" {
+   getMinAndMax(min, max);
+   run("Open Next");   
+   run("Original Scale");
+   setMinAndMax(min, max);
+   Stack.setActiveChannels("1111");
+   cellNum = 1;
+  }  
+
+macro "Make composite [c]"{
+  run("Make Composite", "display=Composite");
+  setSlice(1);
+  run("Cyan");
+  setSlice(2);
+  run("Yellow");
+  if( nSlices == 3){
+        setSlice(3);
+        run("Grays");
+    }else{
+       setSlice(3);
+    run("Magenta");
+  }
+}
+
+
+
