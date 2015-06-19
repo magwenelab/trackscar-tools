@@ -26,6 +26,8 @@ macro "Open and adjust contrast... [0]" {
    setMinAndMax(min, max);
    Stack.setActiveChannels("1111");
    cellNum = 1;
+   run("In [+]");
+   run("In [+]");
   }  
 
 macro "Make composite [c]"{

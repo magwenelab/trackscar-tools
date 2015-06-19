@@ -23,8 +23,6 @@ macro "Open and adjust contrast... [0]" {
    run("Original Scale");
    setMinAndMax(min, max);
    Stack.setActiveChannels("1111");
-   run("In [+]");
-   run("In [+]");	
    cellNum = 1;
   }  
 
@@ -53,4 +51,19 @@ macro "Make 250x250 rectangle [r]"{
 
 macro "Do scale bar [s]" {
      run("Scale Bar...", "width=5 height=4 font=14 color=White background=None location=[Lower Right] bold hide");
+}
+
+macro "Make composite [c]"{
+  run("Make Composite", "display=Composite");
+  setSlice(1);
+  run("Cyan");
+  setSlice(2);
+  run("Yellow");
+  if( nSlices == 3){
+        setSlice(3);
+        run("Grays");
+    }else{
+       setSlice(3);
+    run("Magenta");
+  }
 }
