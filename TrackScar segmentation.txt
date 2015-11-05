@@ -22,7 +22,7 @@ macro "Open and adjust contrast... [0]" {
    run("Open Next");   
    run("Original Scale");
    setMinAndMax(min, max);
-   Stack.setActiveChannels("1111");
+   Stack.setActiveChannels("1001");
    cellNum = 1;
   }  
 
