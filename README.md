@@ -73,5 +73,24 @@ The TrackScar segmentation macro defines the following shortcuts:
 
 ### Example workflow
 
-Open the first file in the `example_stacks` folder (`exp052715_1514-D-for-age_02_160.tif`). You should see a tif stack with four slices that correspond to the four different images. ![First opened image](screenshots/opening_file.png). 
+Open the first file in the `example_stacks` folder (`exp052715_1514-D-for-age_02_160.tif`). You should see a tif stack with four slices that correspond to the four different images:
+
+![First opened image](screenshots/opening_file.png).
+
+Select the TrackScar segmentation Toolset:
+
+![Selecting toolset](screenshots/selecting_segmentation.png )
+
+Type `c` to colorize the image. Note that the color order is cyan-yellow-magenta-grey.
+
+![Colorizing](screenshots/colorizing.png )
+
+The only channels we care about are the first and the last (cyan and grey) because they show the presence of the first stain and the outline of the cell, respectively. However, let's adjust the contrast for all of the channels as if we were going to count the buds.
+
+Type `command-shift-c`. This should pull up a window to adjust the brightness and contrast:
+
+![Contrast dialog box](screenshots/adjust_contrast.png ) 
+
+
+
 
