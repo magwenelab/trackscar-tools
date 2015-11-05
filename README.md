@@ -89,8 +89,51 @@ The only channels we care about are the first and the last (cyan and grey) becau
 
 Type `command-shift-c`. This should pull up a window to adjust the brightness and contrast:
 
-![Contrast dialog box](screenshots/adjust_contrast.png ) 
+![Contrast dialog box](screenshots/adjust_contrast.png )
 
+Next, switch to the greys channel and adjust the brightness bar all the way down as shown:
 
+![Adjusting the BF contrast 1](screenshots/adjust_contrast_bright_1.png )
 
+Now adjust the contrast bar until the background looks dark grey and the cells have an outline:
+
+![Adjusting the BF contrast 2](screenshots/adjust_contrast_bright_2.png )
+
+These setting will show the outline of the cells, while maintaining the maximum amount of contrast for the subsequent staining.
+
+Now switch to the first channel (cyan). Adjust the contrast as shown as if you were counting the scars so that the bud scars are bright, but still have high resolution.
+
+![Adjusting the first channel](screenshots/adjust_first_channel.png ) 
+
+Note that depending on the yeast strain, birth scars can be very faint, so be sure to play around with the contrast. Sometimes really increasing the contrast can reveal dimly stained birth scars.
+
+The other channels can be adjusted in the same way:
+
+![Adjusting the second channel](screenshots/adjust_second_channel.png ) 
+
+![Adjusting the third channel](screenshots/adjust_third_channel.png ) 
+
+Now that the contrast is properly adjusted, the cells that have been stained by the first stain can be cropped. Type `6` to display only the cyan and brightfield channels:
+
+![Displaying first channel](screenshots/display_first_channel.png )
+
+Then type `r` to pull up a rectangle that's about the right size for cropping the cells:
+
+![Pulling up the rectangle](screenshots/pull_up_rectangle.png ) 
+
+Drag the rectangle over the first cell to crop:
+
+![Cropping 1](screenshots/crop_1.png ) 
+
+Then type `i`. This will create a folder called "cropped" to contain the cropped images in the same folder as the original images are. Repeat this process to crop all the cells that are fully contained in the image. In this example, I cropped four cells.  Notice that this created four files in the "cropped" folder.
+
+![Cropping 2](screenshots/crop_2.png)
+
+Next type `0` to bring up the next image:
+
+![Next image](screenshots/next_image.png )
+
+Repeat the process of cropping the individual cells and going through the images. In the example images, there are 14 croppable cells:
+
+![Last image](screenshots/last_image.png )
 
