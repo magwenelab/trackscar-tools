@@ -58,12 +58,20 @@ Note that the channels were specified using spaces in the order in which the dye
 
 ## TrackScar segmentation
 
-Note: you have to run `mergeDV` first as above. The goal of this is to crop the
-
-Open the first file in the `example_stacks` folder (`exp052715_1514-D-for-age_02_160.tif`). You should see a tif stack with four slices that correspond to the four different images. The 
+Note: you have to run `mergeDV` first as above. The goal of this is to crop individual cells have been stained with the first color of TrackScar so that the budscars can be easily counted. 
 
 The TrackScar segmentation macro defines the following shortcuts:
 
-- `c` Stands for "colorize". This converts the file into a colorized overlay.
+- `c` This converts the file into a colorized overlay.
 - `6` Show only the first channel of TrackScar
-- `7` Show only the second channel of TrackScar
+- `7` Show first two channels of TrackScar
+- `8` Show first three channels of TrackScar
+- `9` Show first four channels of TrackScar
+- `0` Open the next image. This applies the brightness and contrast in the current image to the next one.
+- `i` Crop and save. This crops whatever is selected in the image and assigns it to a new file. The macro keeps track of how many cells you have cropped and names the new image accordingly.
+- `r` Make a 250x250 rectangle for cropping.
+
+### Example workflow
+
+Open the first file in the `example_stacks` folder (`exp052715_1514-D-for-age_02_160.tif`). You should see a tif stack with four slices that correspond to the four different images. ![First opened image](screenshots/opening_file.png). 
+
