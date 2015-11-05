@@ -1,0 +1,112 @@
+#!/usr/bin/env python
+
+# Note: to install imagemagick on a Mac, you need to specify to install libtiff
+# brew install imagemagick --with-libtiff
+import argparse
+
+parser = argparse.ArgumentParser(
+    description="""
+    When you quick project a file from the a DeltaVision stack and save it as
+    a tif, you get files of the form: group_number_R3D_D3D_PRJ_channel. This
+    script will join the channels for each group and number into a tif stack
+    using ImageMagick. Each channel is auto-levelled to aid viewing.""")
+    
+parser.add_argument("indir", type=str,
+                    help="Directory where tifs are")
+parser.add_argument("outdir", type=str,
+                    help="Directory where tif stacks should go")
+parser.add_argument("-c", "--create", default=True,
+                    help="Create output directory?")
+parser.add_argument("-l", "--level", default=True,
+                    help="Auto-level?")
+parser.add_argument("-C", "--channels", default="w525 w594 w-50",
+                    help="Either 'two' for a two color experiment, 'three' for a three color experiment, or a list of channels to join (separated by spaces). Defaults to 'two'")
+parser.add_argument("-G", "--gamma", default=False,
+                    help="Whether to do 0.5 gamma to the brightfield channel")
+
+
+args = parser.parse_args()
+
+
+###############
+#Begin program#
+###############
+
+
+
+###############
+#Testing
+###############
+
+# class Empty():
+#     def __init__(self):
+#         pass
+
+# args = Empty()
+    
+# args.indir = "/Users/cs/Desktop/2015-05-18_1587-38halfC/tifs"
+# args.outdir = "/Users/cs/Desktop/2015-05-18_1587-38halfC/tifstacks"
+# args.level = True
+# args.create = True
+# args.channels = "w525 w594 w-50"
+# args.gamma = False
+
+import subprocess, re, collections, os
+
+magickCommand = "convert "
+
+if args.level:
+    magickCommand = magickCommand + "-auto-level "
+    
+magickCommand = magickCommand + "%s %s"
+
+indir = args.indir
+outdir = args.outdir
+
+if args.channels == "two":
+    channels = ["w525", "w594", "w-50"]
+elif args.channels == "three":
+    channels = ["w525", "w676", "w594", "w-50"]
+else:
+    channels = [i for i in args.channels.split()]
+
+if args.create:
+    try:
+        os.mkdir(outdir)
+    except OSError:
+        pass
+
+channelDict = collections.defaultdict(lambda : {} )
+
+filenames = os.listdir(indir)
+
+for i in filenames:
+    m = re.search('(.*)_([0-9]+_?[0-9]*)_R3D_D3D_PRJ_(.*).tif', i)
+    if not m:
+        continue
+    samp, imnum, channel = m.group(1), m.group(2), m.group(3)
+    if channel in channels:
+        channelDict[ '_'.join([samp,imnum]) ][ channel ] = i
+
+#print '_'.join(["1a4_colony6_01","01"]) in channelDict
+
+for imname, chan in channelDict.items():
+    if args.gamma:
+        toGamma = chan["w-50"]
+        subprocess.call( "convert -gamma 0.5 %s %s" % (os.path.join(indir, toGamma), os.path.join(indir, "tmp.tif")), shell=True ) 
+        chan["w-50"] = os.path.join(indir, "tmp.tif")
+    try:
+        files = [ chan[i] for i in channels ]
+    except KeyError:
+        print "Missing channels for %s. Excluding." % imname
+        continue
+    files = [ os.path.join( indir, i ) for i in files ]
+    files = " ".join(files)
+    outFile = os.path.join(outdir, imname) + ".tif"
+    subprocess.call(
+        magickCommand % ( files, outFile),
+        shell=True)
+
+    
+    
+    

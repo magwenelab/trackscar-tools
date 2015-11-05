@@ -1,0 +1,91 @@
+#! /usr/bin/Rscript
+library(utils, quietly=TRUE); library(plyr, quietly=TRUE);
+library(argparser, quietly=TRUE)
+
+# Create a parser
+p <- arg.parser("Make a count list, move files for countlist")
+
+# Add command line arguments
+p <- add.argument(p, "indir", help="The directory where the files are", type="character")
+p <- add.argument(p, "outfile", help="Name of the csv file to write", type="character")
+p <- add.argument(p, "--copyfiles", help="copy the imagefiles?", default=0)
+p <- add.argument(p, "--outdir", help="The directory where the copied files go", type="character")
+p <- add.argument(p, "--numchannels", help="number of channels in the images", default=2)
+p <- add.argument(p, "--firstcell", help="what cell number should the counts start at", default=1)
+p <- add.argument(p, "--lastcell", help="what cell number should they end at", default=Inf)
+p <- add.argument(p, "--createdir", help="make an out directory", default=1)
+
+
+
+# Parse the command line arguments
+argv <- parse.args(p)
+print(argv)
+
+# Find the tif files in the directory
+files <- dir(argv$indir)
+tifFiles <- files[ grep("\\.tif", files)]
+tifFiles <- gsub("\\.tif","", tifFiles)
+underscoreSplit <- strsplit(tifFiles, "_")
+
+#Make sure they all have 5 entries in their names
+filenameLength <- sapply(underscoreSplit, length)
+if( all(filenameLength != 5) ){
+    stop("None of the files has 5 underscore separated fields")
+}
+if( any(filenameLength != 5)){
+    cat( "Files:\n")
+    for( i in tifFiles[ filenameLength != 5 ] ){
+        cat( i )
+        cat("\n")
+    }
+    cat("are the wrong format. Skipping them.\n")
+    underscoreSplit <- underscoreSplit[ filenameLength == 5 ]
+}
+   
+# Format the outfile
+joined <- as.data.frame(do.call("rbind", underscoreSplit))
+colnames(joined) <- c("experiment", "strain", "series", "image", "cell")
+joined$first <- ""
+joined$second <- ""
+if( argv$numchannels == 3 ){
+    joined$third <- ""
+}
+if( argv$numchannels == 4 ){
+    joined$fourth <- ""
+}
+joined$cell.cycle <- ""
+joined$notes <- ""
+
+# Take cells as necessary
+joined <- ddply( joined,
+                .(experiment, strain),
+                function(x){
+                    if( argv$lastcell == Inf){
+                        lastcell = nrow(x)
+                    }else{
+                        lastcell = argv$lastcell
+                        if(lastcell > nrow(x)){
+                            lastcell = nrow(x)
+                        }
+                    }
+                    x[argv$firstcell:lastcell,]
+                }
+                )
+
+# Find the files to copy
+with( joined,
+     filesToCopy <<- paste(paste(experiment, strain, series, image, cell, sep="_"), ".tif", sep=""))
+
+
+
+
+if( argv$copyfiles == 1){
+    if( argv$createdir == 1){
+        dir.create(file.path(argv$outdir), showWarnings = FALSE)
+    }
+    file.copy(file.path(argv$indir, filesToCopy), argv$outdir)
+}
+    
+write.csv(joined, argv$outfile, quote=FALSE, row.names=FALSE)
+
+
