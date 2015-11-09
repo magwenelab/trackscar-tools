@@ -46,7 +46,7 @@ In a TrackScar experiment, the microscope collects Z-stacks of several different
 
 ## mergeDV
 
-This is a python script that is designed to process images created by a DeltaVision microscope. It will not work for other file formats, and the naming convention describe above must be followed exactly for it to work. **This script requires ImageMagick to be installed.**.
+This is a python script that is designed to process images created by a DeltaVision microscope. It will not work for other file formats, and the naming convention describe above must be followed exactly for it to work. **This script requires ImageMagick to be installed with the libtiff option.** On a Mac, using brewer, the command is `brew install imagemagick --with-libtiff`.
 
 The script takes a folder containing `.tif` files produced as above, and produces tifstacks that can then be processed using Fiji. To process the images in the examples folder, navigate in the finder to the folder containing the examples folder and run the following command:
 
@@ -135,5 +135,32 @@ Next type `0` to bring up the next image:
 
 Repeat the process of cropping the individual cells and going through the images. In the example images, there are 14 croppable cells:
 
-![Last image](screenshots/last_image.png )
+![Last image](screenshots/final_image.png )
 
+## makeCountList
+
+This is an R script that makes a csv file containing the image information for the segmented images. It requires the libraries `plyr` and `argparser` to be installed. To use the script, navigate to the folder where the folder `example_stacks` is and run the following command:
+
+`makeCountList example_stacks/cropped example_stacks/example.csv`
+
+This make a csv file that looks like this:
+
+![Count list](screenshots/count_list.png)
+
+## TrackScar
+
+To count the bud scars, open the csv file containing the file information and then open the first file. In ImageJ, wwitch to the "TrackScar" macroset:
+
+![Switch macrosets](screenshots/switching_macrosets.png ) 
+
+Hit `c` to colorize the image. Hit the `+` key twice to zoom into the cell. Adjust the brightness and contrast for each channel as above. Then use the `6`, `7`, and `8` keys to toggle through the different channels and count the bud scars in each channel. Record to number of scars in each channel in the excel spreadsheet. After you've counted all the scars, hit `0` to go to the next image. The next series of screenshots show what it looks like to toggle between the channels to count the budscars:
+
+![Switch macrosets](screenshots/count_1.png ) 
+
+![Switch macrosets](screenshots/count_2.png )
+
+![Switch macrosets](screenshots/count_3.png ) 
+
+The next screenshot shows the completed counts for the example images:
+
+![Switch macrosets](screenshots/final_counts.png ) 
