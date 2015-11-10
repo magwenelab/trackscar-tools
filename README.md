@@ -1,10 +1,11 @@
 
-# TrackScar imageJ macros
+# TrackScar helper macros
 
-This repo contains toolsets to help with budscar counting for TrackScar.
+This repo contains ImageJ toolsets to help with budscar counting for TrackScar and scripts to process images from a DeltaVision microscope DeltaVision micrscope. Example images are included for demonstration purposes. The tools will need to be adapted for other setups. If you have the desire to make more general tools, please feel free to get in touch.
 
 # Installation
 
+To use the scripts, you must install the libraries `plyr` and `argparser` you must also install imagemagick with the libtiff option. To install the macros, copy them to the toolsets directory in Fiji, and put the scripts somewhere in your PATH. See below for instructions:
 
 ## Without git
 
@@ -27,8 +28,6 @@ git clone https://bitbucket.org/csmaxwell/fiji-toolsets.git toolsets
 Add the path to the macros folder to your .bash_profile. On my machine, the relevant line to add was:
 
 `export PATH="/Applications/Fiji.app/macros/toolsets:$PATH"`
-
-
 
 # Usage
 
