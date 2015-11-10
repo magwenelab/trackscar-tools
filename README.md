@@ -154,11 +154,11 @@ To count the bud scars, open the csv file containing the file information and th
 
 Hit `c` to colorize the image. Hit the `+` key twice to zoom into the cell. Adjust the brightness and contrast for each channel as above. Then use the `6`, `7`, and `8` keys to toggle through the different channels and count the bud scars in each channel. Record to number of scars in each channel in the excel spreadsheet. After you've counted all the scars, hit `0` to go to the next image. The next series of screenshots show what it looks like to toggle between the channels to count the budscars:
 
-![Switch macrosets](screenshots/count_1.png ) 
+![Switch macrosets](screenshots/count1.png ) 
 
-![Switch macrosets](screenshots/count_2.png )
+![Switch macrosets](screenshots/count2.png )
 
-![Switch macrosets](screenshots/count_3.png ) 
+![Switch macrosets](screenshots/count3.png ) 
 
 The next screenshot shows the completed counts for the example images:
 
