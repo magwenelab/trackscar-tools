@@ -1,7 +1,7 @@
 
 # TrackScar helper macros
 
-This repo contains ImageJ toolsets to help with budscar counting for TrackScar and scripts to process images from a DeltaVision microscope DeltaVision micrscope. Example images are included for demonstration purposes. The tools will need to be adapted for other setups. If you have the desire to make more general tools, please feel free to get in touch.
+This repo contains ImageJ toolsets to help with budscar counting for TrackScar and scripts to process images from a DeltaVision microscope. Example images are included for demonstration purposes. The tools will need to be adapted for other setups. If you have the desire to make more general tools, please feel free to get in touch.
 
 # Installation
 
