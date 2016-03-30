@@ -110,10 +110,7 @@ This is a protocol for using TrackScar to measure cells in log-phase culture. To
 
 * Image processing
 
-Z-stacks for each channel are projected using maximum pixel intensity 
-The projected images of each channel are assembled into TIFF stacks
-The TIFF stacks are colorized using the “Make composite” command in ImageJ.
-Individual cells that are stained with the first stain are cropped using custom ImageJ macros. For detailed instructions for how to use the tools I wrote to do this, see: [[file:trackscar-image_processing.org]]
+Z-stacks for each channel are projected using maximum pixel intensity The projected images of each channel are assembled into TIFF stacks The TIFF stacks are colorized using the “Make composite” command in ImageJ.  Individual cells that are stained with the first stain are cropped using custom ImageJ macros. [fn:3]
 
 * Tips for counting scars without collecting images
 
@@ -133,18 +130,20 @@ To locate the cells randomly, close the field aperture to ~20 microns in diamete
 
 - Buds don’t count as bud-scars unless they have also budded (cf Figs. [[no_count]] & [[yes_count]]).
 
+#+ATTR_LATEX: :width=0.5\textwidth
 #+CAPTION: The septum of the bud in this picture was stained, but shouldn’t be counted as an additional bud-scar.
 #+name: no_count
 [[file:counting_images/no_bud_scar.jpg]]
 
-
 #+CAPTION: The septum of the bud in this picture would be counted since the bud has itself budded.
 #+name: yes_count
+#+ATTR_LATEX: :width=0.5\textwidth
 [[file:counting_images/yes_bud_scar.jpg]]
 
 - If the cell has lysed or is otherwise too bright to count bud scars in a channel, record an NA in that channel (cf Fig. [[too_bright]]). 
 
 #+CAPTION: This cell below would get an “NA” for the green, but not the blue channel or red channels.
+#+ATTR_LATEX: :width=0.5\textwidth
 #+name: too_bright
 [[file:counting_images/too_bright.png]]
 
@@ -155,3 +154,5 @@ To locate the cells randomly, close the field aperture to ~20 microns in diamete
 [fn:1] The concentration of WGA can be lowered by at least 10-fold at the expense of some of the staining intensity. WGA staining time can be shortened to 5 minutes.
 
 [fn:2] The stain is stable for at least 3 months and we have gotten usable data from cells stored for 9 months.
+
+[fn:3] For detailed instructions for how to use the tools I wrote to do this see: [[https://github.com/csmaxwell/trackscar-tools/blob/master/trackscar-image_processing.org][here]].
