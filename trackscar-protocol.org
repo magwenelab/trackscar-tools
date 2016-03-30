@@ -1,0 +1,157 @@
+
+#+TITLE: TrackScar protocol
+#+AUTHOR: Colin S. Maxwell
+#+FULLNAME: Colin S. Maxwell
+#+PRINT-DATE: April 2016
+#+OPTIONS: toc:2
+#+LATEX_CLASS: koma-article
+#+LATEX_HEADER: %decrease spacing of itemize and enumerate lists
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \setlist[enumerate,itemize]{noitemsep,leftmargin=*}
+#+LATEX_HEADER: %set up links to have nice colors
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \PassOptionsToPackage{hyperref,x11names}{xcolor}
+#+LATEX_HEADER: \definecolor{firebrick}{HTML}{B22222}
+#+LATEX_HEADER: \usepackage{tocloft}
+#+LATEX_HEADER: \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+#+LATEX_HEADER: \usepackage[breaklinks=true,linktocpage,xetex]{hyperref} 
+#+LATEX_HEADER: \hypersetup{colorlinks, citecolor=firebrick, filecolor=firebrick,linkcolor=firebrick,urlcolor=firebrick}
+#+LaTeX_HEADER: %------------------------------
+#+LaTeX_HEADER: % set the color of the results boxes ("verbatim")
+#+LaTeX_HEADER: %------------------------------
+#+LaTeX_HEADER: \let\oldv\verbatim
+#+LaTeX_HEADER: \let\oldendv\endverbatim
+#+LaTeX_HEADER: \def\verbatim{\par\setbox0\vbox\bgroup\oldv}
+#+LaTeX_HEADER: \def\endverbatim{\oldendv\egroup\fboxsep0pt \noindent\colorbox[gray]{0.975}{\usebox0}\par}
+#+LaTeX_HEADER: \usepackage{fancyvrb}
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+# Local Variables: 
+# eval: (require 'ox-extra)
+# eval: (require 'ox-gfm)
+# eval: (ox-extras-activate '(ignore-headlines))
+# End:
+
+* Reagents needed
+
+- 1mg/ml stock solution in H20 of wheat germ agglutinin conjugated to two different fluorophores.
+- YPD
+- Sterile PBS
+- 2 96 well, 'U'-bottom plates
+
+** Sources for Wheat germ agglutinin:
+
+- [[https://www.thermofisher.com/order/catalog/product/W11261][Life technologies]]
+- [[https://biotium.com/product-category/products/fluorescent-secondary-antibodies-and-other-conjugates/cf-dye-and-biotin-labeled-lectins-antibodies-strepavidin-lectins-and-labeling-kits/][Biotium]]
+
+* Protocol summary
+
+This is a protocol for using TrackScar to measure cells in log-phase culture. To ensure that diverse strains can be measured simultaneously in log-phase culture, eight serial dilutions are made for each strain down the rows of a 96 well plate. This allows the synchronization of several strains in log-phase culture. It is important to centrifuge the cells at low speeds and to prewarm the YPD in order to keep the cells in log-phase growth. The imaging conditions assume the researcher will take Z-stacks in order to analyze them later, but it is straightforward to count bud scars using a standard fluorescent microscope by alternating between filter sets and moving the stage up and down to see buds on both sides of the cell.
+
+** Day 1
+- Streak out a plate for single colonies
+
+** Day 3
+- Choose a single colony and inoculate in 2ml of YPD
+
+** Day 4
+- Set up a 96 well plate by putting 150 µl of YPD in each well. Pipet three columns for each strain to be assayed.
+- Inoculate three columns in the first row of the plate for each strain to be assayed with a 1:100 dilution of overnight culture.
+- Using a 12 channel pipettor, make a 1:4 serial dilution down the rows of the plate by taking 50µl from row A and mixing with row B, then taking 50µl from row B and mixing with row C, etc. 
+- Put the plate on a plate shaker at 500rpm in an incubator at the desired temperature.
+
+** Day 5
+
+*** Collecting the samples
+- Prepare a 96 well plate by putting 150µl of YPD in each well of one column for each strain being assayed. For example, if two strains are being measured, fill two columns with the YPD. 
+- Place the 96 well plate at the desired temperature to pre-warm the media while performing the next steps.
+- Locate rows containing putatively log-phase cultures of each strain on the plate set up the night before by eye. Look for cultures of intermediate density that have not saturated, but with a visible amount of cells. It helps to hold up the plate to a light. Each of the columns that contain a strain should have approximately the same density for a given row (otherwise, this indicates inaccurate pipetting). 
+- Pool columns containing putatively log-phase cultures in an epi tube and count the cells with a hemocytometer. The culture must be between 0.7x106 and 7x106 cells/ml. If the culture is outside of this range, choose a row for that strain either more or less dense.
+- Spin down the log-phase culture at 500xg for 1.5 minutes. 
+- Remove the supernatant.
+- Add 60ul of YPD containing 33µg/ml fluorescently (1:33 dilution of the stock) conjugated wheat germ agglutinin (WGA). I always use Ax488 conjugated WGA for the sake of consistency. WGA stock solution is 1mg/ml. Vortex gently. Stain for 15 minutes at 30C on a rotor.[fn:1]	
+- Spin down the cells at 500xg for 1.5 minutes and remove the supernatant. Wash the cells once in 200µl of YPD.
+- Resuspend the cells to 5x106 cells/ml by calculating the volume needed to get this density based on the previous count. Then add 10µl of the cells to each well in the column corresponding to that strain in the plate that you set up at the beginning of the day. The final concentration of the cells in this plate is 0.33x10^6 cells/ml.
+- Put the plate containing the stained cells on a plate shaker in an incubator at the desired temperature for the desired time.
+- Pool all cells from the strain. Spin them down at 5000xg for 2 minutes.
+- Fix the cells by resuspending them in 500µl of PBS + 8% formaldehyde for >15minutes.
+- Wash the cells 1x in 500µl of PBS and resuspend in 500µl of PBS.
+- Sonicate the cells briefly (6 0.5 second bursts on setting ‘4’ for a Branson sonifier).
+
+- Store the cells stained with the first dye at 4C in a box without light.[fn:2] 
+
+** Imaging
+
+*** Applying the final stain before imaging
+
+  -	Spin down the cells at 5,000xg for 2 minutes.
+  -	Add 60ul of YPD with 33µg/ml of a second color of fluorescently conjugated WGA and vortex briefly. I always use TMR-conjugated WGA. Stain for 15 minutes at 30C on a rotor.
+  -	Wash the cells once in 500µl PBS. Resuspend the cells in PBS. They are now ready to image.
+
+*** Slide preparation protocol
+
+  I’ve found that the best way to get a consistent density of cells suitable for imaging is the following:
+
+  1)	Spin down the cells into a pellet, then set a pipet to 4µl and pull up a small amount of the cells from the pellet along with the buffer. 
+  2)	Put the pipet over the microscope slide and push out the cells with the buffer into a small drop at the end of the pipet. You should see some motion in the drop as the cells sink to the bottom of the drop. 
+  3)	After the cells settle, bring the drop in contact with the slide. 
+  4)	Take a cover slip and place it over the drop of buffer and cells. 
+  5)	Press down gently but firmly on the coverslip with a chem wipe to squish the cells flat. When you hold up the coverslip and slide to the light, there should be a central area in the coverslip with lots of cells. 
+  6)	Seal the slide by first putting a small amount of nail polish on the edges of the coverslip. Allow them to dry for a minute or so, then seal the rest of the coverslip. This prevents the nail polish from getting under the coverslip and making the cells move about. After the nail polish dries, you’re ready to image.
+
+* Imaging conditions
+
+- 10 micron wide z-stacks with 0.4microns between slices
+- A 100x objective is used for all imaging
+= 0.1 second exposure for all fluorescently conjugated WGA stains
+= 0.025 second exposures for DIC light
+= >150 individuals are imaged for each experiment
+- Individuals are located by looking for cells stained with the first stain (in this case Ax488) in a transect along the slide. Each cell that is encountered on the transect is imaged
+
+* Image processing
+
+Z-stacks for each channel are projected using maximum pixel intensity 
+The projected images of each channel are assembled into TIFF stacks
+The TIFF stacks are colorized using the “Make composite” command in ImageJ.
+Individual cells that are stained with the first stain are cropped using custom ImageJ macros. For detailed instructions for how to use the tools I wrote to do this, see: [[file:trackscar-image_processing.org]]
+
+* Tips for counting scars without collecting images
+
+I have found that it is not necessary to collect projected z-stacks in order to accurately collect TrackScar data. A standard fluorescent microscope with a 60x or 100x objective can be used.
+
+To locate the cells randomly, close the field aperture to ~20 microns in diameter. Set the fluorescence to view the first dye (in this case Ax488), and move along a transect until the first cell is encountered. Count all the bud scars on all sides of the cell that are visible in that channel by moving the focus up and down and record the number. Then switch to the second dye and count all the bud scars visible in that channel in the same way and record that number.
+
+* Bud scar counting rules
+
+- Only count cells that have the first stain. 
+- Only count cells that are 100% within the picture.
+- Adjust the contrast of the image so that for each channel the buds are bright, but not so high that the buds get blurry. If a scar has any of the previous color, count it as that color (cf Fig. [[partial_stain]]). However, don’t count scars whose staining is below what you have set the contrast to be.
+
+#+CAPTION: In the left there is a half-stained “green” bud scar. Its staining is weaker than the other “green” buds, but it should still be counted as “green”. Note that the contrast is set so that the fully stained scars in the green channel are still crisp.
+#+name: partial_stain
+[[file:counting_images/partial_stain.jpg]]
+
+- Buds don’t count as bud-scars unless they have also budded (cf Figs. [[no_count]] & [[yes_count]]).
+
+#+CAPTION: The septum of the bud in this picture was stained, but shouldn’t be counted as an additional bud-scar.
+#+name: no_count
+[[file:counting_images/no_bud_scar.jpg]]
+
+
+#+CAPTION: The septum of the bud in this picture would be counted since the bud has itself budded.
+#+name: yes_count
+[[file:counting_images/yes_bud_scar.jpg]]
+
+- If the cell has lysed or is otherwise too bright to count bud scars in a channel, record an NA in that channel (cf Fig. [[too_bright]]). 
+
+#+CAPTION: This cell below would get an “NA” for the green, but not the blue channel or red channels.
+#+name: too_bright
+[[file:counting_images/too_bright.png]]
+
+
+
+* Footnotes
+
+[fn:1] The concentration of WGA can be lowered by at least 10-fold at the expense of some of the staining intensity. WGA staining time can be shortened to 5 minutes.
+
+[fn:2] The stain is stable for at least 3 months and we have gotten usable data from cells stored for 9 months.
