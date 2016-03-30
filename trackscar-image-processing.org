@@ -37,7 +37,7 @@ the relevant line to add was:
 To install, delete the 'macros/toolsets' folder in Fiji and replace it
 with a clone of this repo.
 
-=cd path/to/macros git clone https://bitbucket.org/csmaxwell/fiji-toolsets.git toolsets=\\
+=cd path/to/macros git clone https://github.com/csmaxwell/trackscar-tools.git toolsets=\\
 Add the path to the macros folder to your .bash\_profile. On my machine,
 the relevant line to add was:
 
