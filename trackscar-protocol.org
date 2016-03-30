@@ -155,4 +155,4 @@ To locate the cells randomly, close the field aperture to ~20 microns in diamete
 
 [fn:2] The stain is stable for at least 3 months and we have gotten usable data from cells stored for 9 months.
 
-[fn:3] For detailed instructions for how to use the tools I wrote to do this see: [[https://github.com/csmaxwell/trackscar-tools/blob/master/trackscar-image_processing.org][here]].
+[fn:3] For detailed instructions for how to use the tools I wrote to do this see: [[https://github.com/csmaxwell/trackscar-tools/blob/master/trackscar-image-processing.org][here]].
